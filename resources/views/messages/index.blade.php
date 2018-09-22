@@ -15,13 +15,20 @@
 				@foreach($con_mensajes as $mensaje)
 					<tr>
 						<td>{{ $mensaje->id }}</td>
+						@if($mensaje->user_id)
+							<td>
+								<a href="{{ route('usuarios.show',$mensaje->user->id) }}">{{ $mensaje->user->name }}</a>
+							</td>
+							<td>{{ $mensaje->user->email }}</td>
+						@else
+							<td>{{ $mensaje->tNombre }}</td>
+							<td>{{ $mensaje->tCorreo }}</td>
+						@endif
 						<td>
 							<a href="{{ route('mensajes.show',$mensaje->id) }}">
-							{{ $mensaje->tNombre }}
+								{{ $mensaje->tMensaje }}
 							</a>
 						</td>
-						<td>{{ $mensaje->tCorreo }}</td>
-						<td>{{ $mensaje->tMensaje }}</td>
 						<td>
 							<a href="{{ route('mensajes.edit',$mensaje->id) }}" class="btn btn-warning btn-sm">Editar</a>
 							<form style="display: inline;" method="POST" action="{{ route('mensajes.destroy', $mensaje->id) }}">

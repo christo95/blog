@@ -52,7 +52,12 @@ class MessagesController extends Controller
         //     'updated_at' => Carbon::now()
         // ]);
         // Model::unguard();
-        Message::create($request->all());
+        // $message = Message::create($request->all());
+
+        // if (auth()->check()) {
+        //     auth()->user()->messages()->save($message);
+        // }
+        auth()->user()->messages()->create($request->all());  
 
         return redirect()->route('mensajes.create')->with('info','Hemos recibido tu mensaje');
     }
