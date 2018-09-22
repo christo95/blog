@@ -1,5 +1,4 @@
 			{!! csrf_field() !!}
-			
 			@unless($mensaje->user_id)
 				<p><label for="tNombre">
 					Nombre
